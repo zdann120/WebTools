@@ -1,1 +1,14 @@
- h1 Secure Messages
+h1 Secure Messages
+table.table.table-bordered
+  - @messages.each do |msg|
+    - sender = User.find(msg.sender_id)
+    tr
+      td.table-info
+        p == sender.email
+        p == msg.created_at
+      td
+        p
+          b == msg.subject
+        p == msg.message
+- if @messages.empty?
+  div.alert.alert-danger There are no messages.
