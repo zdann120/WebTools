@@ -44,3 +44,7 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+# Additional Gems
+gem 'simple_form'
+gem 'active_interaction'
