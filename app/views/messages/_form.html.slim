@@ -1,0 +1,5 @@
+== simple_form_for message, url: messages_path do |f|
+  == f.input :recipient, as: :select, collection: User.all, label_method: :email, value_method: :id
+  == f.input :subject
+  == f.input :message, as: :text
+  == f.submit
