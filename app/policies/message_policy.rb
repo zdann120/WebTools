@@ -1,6 +1,6 @@
 class MessagePolicy < ApplicationPolicy
   def create?
-    false
+    user.admin?
   end
   class Scope < Scope
     def resolve
