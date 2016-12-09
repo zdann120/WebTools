@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class MessageDashboard < Administrate::BaseDashboard
+class ServiceRequestDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,15 +8,16 @@ class MessageDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    user: Field::BelongsTo,
     id: Field::Number,
-    sender: Field::BelongsTo.with_options(class_name: "User"),
-    recipient: Field::BelongsTo.with_options(class_name: "User"),
+    token: Field::String,
+    aasm_state: Field::String,
     subject: Field::String,
     message: Field::Text,
-    token: Field::String,
-    important: Field::Boolean,
+    urgent: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    completion_message: Field::Text,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -25,42 +26,43 @@ class MessageDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :user,
     :id,
-    :sender,
-    :recipient,
-    :subject
+    :aasm_state,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :user,
     :id,
-    :sender,
-    :recipient,
+    :token,
+    :aasm_state,
     :subject,
     :message,
-    :token,
-    :important,
+    :urgent,
     :created_at,
     :updated_at,
+    :completion_message,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :sender,
-    :recipient,
+    :user,
+    :token,
+    :aasm_state,
     :subject,
     :message,
-    :token,
-    :important,
+    :urgent,
+    :completion_message,
   ].freeze
 
-  # Overwrite this method to customize how messages are displayed
+  # Overwrite this method to customize how service requests are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(message)
-  #   "Message ##{message.id}"
+  # def display_resource(service_request)
+  #   "ServiceRequest ##{service_request.id}"
   # end
 end

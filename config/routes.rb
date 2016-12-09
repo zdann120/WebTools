@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :messages
+    resources :service_requests
     root to: "users#index"
   end
   root to: 'visitors#index'
