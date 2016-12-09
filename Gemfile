@@ -48,3 +48,4 @@ end
 # Additional Gems
 gem 'simple_form'
 gem 'active_interaction'
+gem 'aasm'

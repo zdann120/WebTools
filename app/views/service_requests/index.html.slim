@@ -1,0 +1,14 @@
+h1 Service Requests
+table.table
+  thead
+    tr
+      th Subject
+      th State
+      th Date
+  tbody
+    - ServiceRequest.all.each do |sr|
+      tr
+        td == link_to sr.subject, sr
+        td == sr.aasm_state
+        td == sr.created_at
+

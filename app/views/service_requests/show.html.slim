@@ -1,0 +1,17 @@
+h1 Service Request
+pre Token #{@request.token}
+table.table.table-sm.table-bordered
+  thead
+    tr
+      th Subject
+      th State
+      th Created At
+      th Last Modified
+  tbody
+    tr
+      td == @request.subject
+      td == @request.aasm_state
+      td == @request.created_at
+      td == @request.updated_at
+h2 Message
+p.lead == @request.message
