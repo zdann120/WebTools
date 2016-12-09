@@ -1,4 +1,7 @@
 class ServiceRequestPolicy < ApplicationPolicy
+  def show?
+    record.user == user 
+  end
   def begin?
     is_admin?(user)
   end

@@ -9,7 +9,7 @@ table.table
       th State
       th Date
   tbody
-    - ServiceRequest.all.each do |sr|
+    - current_user.service_requests.each do |sr|
       tr
         td == link_to sr.subject, sr
         td == sr.aasm_state

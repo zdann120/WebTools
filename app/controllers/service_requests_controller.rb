@@ -1,7 +1,9 @@
 class ServiceRequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_request, only: [:show]
 
   def show
+    authorize @request
   end
 
   def new
