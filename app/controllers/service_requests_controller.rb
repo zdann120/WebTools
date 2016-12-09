@@ -1,6 +1,7 @@
 class ServiceRequestsController < ApplicationController
+  before_action :set_request, only: [:show]
+
   def show
-    @request = ServiceRequest.find params[:id]
   end
 
   def new
@@ -20,7 +21,32 @@ class ServiceRequestsController < ApplicationController
     end
   end
 
+  def begin
+    @request = ServiceRequest.find params[:service_request_id]
+    authorize @request
+    @request.begin!
+    redirect_to @request, notice: 'State changed to: "in progress"'
+  end
+
+  def complete
+    @request = ServiceRequest.find params[:service_request_id]
+    authorize @request
+    @request.complete!
+    redirect_to @request, notice: 'State changed to: "completed"'
+  end
+
+  def cancel
+    @request = ServiceRequest.find params[:service_request_id]
+    authorize @request
+    @request.cancel!
+    redirect_to @request, notice: 'State changed to: "canceled"'
+  end
+
   private
+
+  def set_request
+    @request = ServiceRequest.find params[:id]
+  end
 
   def req_params
     params.require(:service_requests_initiate).permit(:message, :subject)
