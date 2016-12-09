@@ -17,7 +17,7 @@ class ServiceRequestsController < ApplicationController
       subject: req_params['subject']
     )
     if @outcome.valid?
-      redirect_to service_requests_path, notice: "Request ID #{@outcome.result.token} has been added."
+      redirect_to @outcome.result, notice: "Request ID #{@outcome.result.token} has been added."
     else
       render 'new'
     end

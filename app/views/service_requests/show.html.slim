@@ -11,8 +11,8 @@ table.table.table-sm.table-bordered
     tr
       td == @request.subject
       td == @request.aasm_state
-      td == @request.created_at
-      td == @request.updated_at
+      td == @request.created_at.strftime('%m-%b-%Y %l:%M %p ')
+      td == @request.updated_at.strftime('%m-%b-%Y %l:%M %p ')
 h2 Message
 p.lead == @request.message
 - if current_user.admin?
