@@ -33,8 +33,10 @@ class ServiceRequestsController < ApplicationController
   def complete
     @request = ServiceRequest.find params[:service_request_id]
     authorize @request
-    @request.complete!
-    redirect_to @request, notice: 'State changed to: "completed"'
+    @outcome = ServiceRequests::Complete.run(service_request: @request, message: params[:service_request]['completion_message'])
+    if @outcome.valid?
+      redirect_to @request, notice: 'State changed to: "completed"'
+    end
   end
 
   def cancel

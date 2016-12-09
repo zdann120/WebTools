@@ -1,6 +1,6 @@
 class ServiceRequestPolicy < ApplicationPolicy
   def show?
-    record.user == user 
+    (record.user == user) || user.admin?
   end
   def begin?
     is_admin?(user)

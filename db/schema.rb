@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208233100) do
+ActiveRecord::Schema.define(version: 20161209030412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(version: 20161208233100) do
     t.integer  "user_id"
     t.string   "subject"
     t.text     "message"
-    t.boolean  "urgent",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "urgent",             default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.text     "completion_message"
     t.index ["token"], name: "index_service_requests_on_token", unique: true, using: :btree
     t.index ["user_id"], name: "index_service_requests_on_user_id", using: :btree
   end

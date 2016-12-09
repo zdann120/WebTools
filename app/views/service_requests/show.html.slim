@@ -17,3 +17,7 @@ h2 Message
 p.lead == @request.message
 - if current_user.admin?
   == render partial: 'state_buttons', locals: { request: @request }
+
+- if @request.completed? && !@request.completion_message.blank?
+  h3 Completion Message
+  p.lead == @request.completion_message

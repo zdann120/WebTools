@@ -2,7 +2,8 @@
   == link_to 'BEGIN', service_request_begin_path(request), method: :put,
     class: 'btn btn-success'
 - if request.in_progress?
-  == link_to 'COMPLETE', service_request_complete_path(request), method: :put, 
-    class: 'btn btn-success'
+  == simple_form_for request, url: service_request_complete_path(request), method: :put do |f|
+    == f.input :completion_message
+    == f.submit 'COMPLETE', class: 'btn btn-success'
   == link_to 'CANCEL', service_request_cancel_path(request), method: :put, 
     class: 'btn btn-danger'
