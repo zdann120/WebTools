@@ -8,6 +8,7 @@ class ServiceRequest < ApplicationRecord
     state :in_progress
     state :completed
     state :canceled
+    state :overridden
 
     event :begin do
       transitions from: :pending, to: :in_progress
@@ -19,6 +20,10 @@ class ServiceRequest < ApplicationRecord
 
     event :cancel do
       transitions from: [:in_progress, :pending], to: :canceled
+    end
+
+    event :override do
+      transitions from: :canceled, to: :overridden
     end
   end
 end

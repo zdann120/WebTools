@@ -46,6 +46,13 @@ class ServiceRequestsController < ApplicationController
     redirect_to @request, notice: 'State changed to: "canceled"'
   end
 
+  def override
+    @request = ServiceRequest.find params[:service_request_id]
+    authorize @request
+    @request.override!
+    redirect_to @request, notice: 'State changed to: "overridden"'
+  end
+
   private
 
   def set_request

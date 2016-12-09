@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     put 'begin', to: 'service_requests#begin'
     put 'complete', to: 'service_requests#complete'
     put 'cancel', to: 'service_requests#cancel'
+    put 'override', to: 'service_requests#override'
   end
   resources :messages
   namespace :admin do
