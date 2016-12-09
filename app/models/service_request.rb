@@ -1,6 +1,7 @@
 class ServiceRequest < ApplicationRecord
   include AASM
   belongs_to :user
+  has_many :notes, as: :noteable
   has_secure_token
 
   aasm do
